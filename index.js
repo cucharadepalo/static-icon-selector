@@ -2,24 +2,26 @@
 
 const fs = require('fs');
 const junk = require('junk');
+const jsonFile = 'icons.json';
 
-const walkSync = (dir, list, level) => {
+const walkSync = (dir, list, category) => {
   let files = fs.readdirSync(dir);
   files = files.filter(junk.not);
   let iconList = list || [];
-  let counter = level || 0;
+  let iconCategory = category || "none";
   files.forEach(file => {
     if (fs.statSync(dir + file).isDirectory()) {
-      let directory = { category: file, data: []};
-      iconList.push(directory);
+      // let directory = { category: file, data: []};
+      // iconList.push(directory);
       
-      walkSync(dir + file + '/', iconList, counter);
-      counter++;
+      iconList = walkSync(dir + file + '/', iconList, file);
+      // counter++;
     }
-    else if (iconList[counter]) {
+    else if (file != jsonFile) {
       let iconName = file.slice(0, -4);
+      let fileName = file;
       let iconData = fs.readFileSync(dir + file, "utf8");
-      iconList[counter]['data'].push({ name: iconName, icon: iconData });
+      iconList.push({ name: iconName, filename: fileName, category: iconCategory, icon: iconData });
     }
   });
   return iconList;
@@ -27,6 +29,6 @@ const walkSync = (dir, list, level) => {
 
 exports.run = (dir) => {
   const output = JSON.stringify(walkSync(dir), null, 2);
-  fs.writeFileSync(dir + 'icons.json', output);
-  console.log('Hecho!');
+  fs.writeFileSync(dir + jsonFile, output);
+  return 'Hecho!';
 }
