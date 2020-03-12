@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prueba Iconos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="prefetech" href="iconos/icons.json">
     <script src="app.js"></script>
@@ -17,11 +17,13 @@
         <aside id="toolbar">
             <figure class="icon-preview"></figure>
             <div class="icon-details"></div>
-            <div class="icon-code">
-                <pre></pre>
-            </div>
             <div class="icon-actions">
-
+                <a class="action-btn" id="iconDownload"></a>
+                <button class="action-btn" id="iconCopy"></button>
+            </div>
+            <div class="icon-code">
+                <pre><code class="svg"></code></pre>
+                <textarea id="svgCode" class="copy-svg"></textarea>
             </div>
         </aside>
     </div>

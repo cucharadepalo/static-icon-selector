@@ -3,17 +3,19 @@
     --main-txt-color: #303030;
     --secondary-txt-color: #444444;
     --light-border-color: #ccc;
+    --accent-color: #3491CC;
 }
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
     :root {
     --main-bg-color: #303030;
     --main-txt-color: #f1f1f1;
     --secondary-txt-color: #e5e5e5;
     --light-border-color: #454545;
+    --accent-color: #3491CC;
   }
-}
+} */
 body {
-  font: 18px/1.5 "Inter", "Open sans", sans-serif;
+  font: 300 18px/1.5 "Inter", "Open sans", sans-serif;
   color: var(--main-txt-color);
   background-color: var(--main-bg-color);
 }
@@ -27,7 +29,7 @@ body {
 }
 .category-heading {
   font-size: 24px;
-  font-weight: 400;
+  font-weight: 500;
   text-transform: capitalize;
   margin: 2em auto 1em;
   color: var(--secondary-txt-color);
@@ -49,23 +51,43 @@ body {
   width: 100%;
   height: auto;
 }
+.icon-btn:focus,
+.icon-btn:active,
+.icon-btn.selected {
+  outline: none;
+  border: 4px solid var(--accent-color);
+}
 .icon-code {
-  background-color: rgb(20,22,20);
-  color: rgb(240,240,240);
-  border-radius: 12px;
-  padding: 10px 20px;
-  overflow-y: scroll;
-  height: calc(100vh - (320px + 120px + 40px));
+  position: relative;
+  margin: 10px 0;
 }
 .icon-code > pre {
-  font-size: 13px;
-  font-family: monospace;
+  font-size: 12px;
+  font-family: 'Fira Code', monospace;
+  font-weight: 500;
   white-space: pre-wrap;
   word-wrap: break-word;
+  background-color: rgb(40,44,40);
+  color: rgb(240,240,240);
+  border-radius: 12px;
+  padding: 10px;
+  overflow-y: scroll;
+  max-height: calc(100vh - (320px + 120px + 100px));
+  margin: 0;
+}
+.icon-code > pre:empty {
+  visibility: hidden;
+}
+.icon-code > textarea,
+.copy-svg {
+  font-size: 1px;
+  width: 0; height: 0;
+  opacity: 0;
 }
 .icon-preview {
-  width: 320px;
-  height: 320px;
+  width: 300px;
+  height: 300px;
+  margin: 20px 20px 0; padding: 20px;
 }
 .icon-preview > svg {
   width: 100%;
@@ -73,6 +95,37 @@ body {
 }
 .icon-actions, .icon-details {
   height: 60px;
+}
+.icon-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 10px 0;
+}
+.action-btn {
+  border: none;
+  margin: 0; padding: .75em 1em 0.75em 0.5em;
+  width: 47.5%;
+  box-sizing: border-box;
+  overflow: visible;
+  background: var(--accent-color);
+  color: white;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 4px;
+  display: inline-block;
+  transition: all .5s linear;
+  text-align: center;
+  text-decoration: none;
+  -webkit-appearance: none;
+  appearance: none;
+  line-height: normal;
+}
+.action-btn > svg {
+  vertical-align: text-top;
 }
 #iconGrid {
   width: calc(90% - 400px);
@@ -82,8 +135,8 @@ body {
 }
 #toolbar {
   position: fixed;
-  width: 400px;
-  padding: 20px 40px 40px;
+  width: 360px;
+  padding: 0 20px 20px;
   height: 100vh;
   top: 0; right: 0;
   background-color: rgba(0,0,0,.1);
