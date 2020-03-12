@@ -16,6 +16,7 @@ window.addEventListener("load", () => {
                 success: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;"> <path fill="currentColor" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z"> <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"/></path></svg> Descargando…`
             }
         },
+        colorButtons = document.querySelectorAll(".preview-controls button"),
         data = "iconos/icons.json";
 
     let request = new XMLHttpRequest();
@@ -64,7 +65,10 @@ window.addEventListener("load", () => {
         iconDownloadBtn.addEventListener("click", downloadIcon);
         for(let i = 0; i < buttons.length; i++){
             buttons[i].innerHTML = buttonsTxt[buttons[i].id]['text'];
-            buttons[i].addEventListener("click", showButtonMessage, true)
+            buttons[i].addEventListener("click", showButtonMessage, true);
+        }
+        for(let j = 0; j < colorButtons.length; j++){
+            colorButtons[j].addEventListener("click", previewColor, true);
         }
     }
 
@@ -84,11 +88,12 @@ window.addEventListener("load", () => {
         let iconDetails = document.createElement("span");
         iconDetails.className = "icon-name";
         iconDetails.textContent = icon.id;
-        let codeBlock = toolbar.querySelector("pre > code");
+        let codeBlock = toolbar.querySelector("pre code");
         preview.innerHTML = iconCode;
         details.innerHTML = "";
         details.appendChild(iconDetails);
         codeBlock.textContent = iconCode;
+        hljs.highlightBlock(codeBlock);
         svgCode.textContent = iconCode;
         svgCode.setAttribute("data-filename", iconFilename);
     }
@@ -110,12 +115,23 @@ window.addEventListener("load", () => {
     }
 
     function downloadIcon(e) {
-        let element = e.currentTarget;
+        let element = document.createElement("a");
         let filename = svgCode.getAttribute("data-filename");
         element.setAttribute("href", "data:image/svg+xml;charset=utf-8, " + encodeURIComponent(svgCode.textContent));
         element.setAttribute("download", filename);
-        let svg = parser.parseFromString(svgCode.textContent, "image/svg+xml");
-        console.log(svg);        
+        toolbar.appendChild(element);
+        element.click();
+        toolbar.removeChild(element);
+    }
+
+    function previewColor(e) {
+        const preview = toolbar.querySelector(".icon-preview");
+        const color = e.currentTarget.getAttribute("data-color");
+        let colorAttibute = "data-background";
+        if (e.currentTarget.classList.contains("preview-foreground")) {
+            colorAttibute = "data-foreground";
+        }
+        preview.setAttribute(colorAttibute, color);
     }
 
 });
