@@ -10,7 +10,6 @@
     --main-txt-color: #f1f1f1;
     --secondary-txt-color: #e5e5e5;
     --light-border-color: #454545;
-
   }
 }
 body {
@@ -50,21 +49,49 @@ body {
   width: 100%;
   height: auto;
 }
+.icon-code {
+  background-color: rgb(20,22,20);
+  color: rgb(240,240,240);
+  border-radius: 12px;
+  padding: 10px 20px;
+  overflow-y: scroll;
+  height: calc(100vh - (320px + 120px + 40px));
+}
 .icon-code > pre {
   font-size: 13px;
   font-family: monospace;
   white-space: pre-wrap;
   word-wrap: break-word;
 }
+.icon-preview {
+  width: 320px;
+  height: 320px;
+}
+.icon-preview > svg {
+  width: 100%;
+  height: auto;
+}
+.icon-actions, .icon-details {
+  height: 60px;
+}
 #iconGrid {
-  width: calc(100% - 400px - 5%);
-  margin-left: 2.5%;
+  width: calc(90% - 400px);
+  margin-left: 5%;
+  min-height: 100vh;
+  overflow-y: scroll;
 }
 #toolbar {
   position: fixed;
   width: 400px;
-  padding: 15px;
+  padding: 20px 40px 40px;
   height: 100vh;
   top: 0; right: 0;
   background-color: rgba(0,0,0,.1);
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#toolbar > * {
+  flex-grow: 0;
 }

@@ -41,9 +41,15 @@ window.addEventListener("load", () => {
 
     function showDetail(e) {
         let icon = e.currentTarget;
-        let preview = toolbar.querySelector(".icon-details");
+        let preview = toolbar.querySelector(".icon-preview");
+        let details = toolbar.querySelector(".icon-details");
+        let iconDetails = document.createElement("span");
+        iconDetails.className = "icon-name";
+        iconDetails.textContent = icon.id;
         let codeBlock = toolbar.querySelector("pre");
         preview.innerHTML = icon.firstElementChild.outerHTML;
+        details.innerHTML = "";
+        details.appendChild(iconDetails);
         codeBlock.textContent = icon.firstElementChild.outerHTML;
     }
 
