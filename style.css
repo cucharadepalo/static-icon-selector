@@ -220,7 +220,7 @@ button[class*="-foreground"] {
 
 .hljs-tag,
 .hljs-name {
-  color: #rgb(240, 240, 245);
+  color: rgb(240, 240, 245);
 }
 .hljs-attr {
   color: rgb(180, 180, 190);
