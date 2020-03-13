@@ -13,7 +13,7 @@ const walkSync = (dir, list, category) => {
     if (fs.statSync(dir + file).isDirectory()) {
       iconList = walkSync(dir + file + '/', iconList, file);
     }
-    else if (file != jsonFile) {
+    else if (file != jsonFile && file.substring(file.length - 4) == '.svg') {
       let iconName = file.slice(0, -4);
       let fileName = file;
       let iconData = fs.readFileSync(dir + file, "utf8");
