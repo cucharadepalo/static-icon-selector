@@ -41,10 +41,11 @@ Just the live-server part
 
 ## About the icons
 
-Optimal conditions for svg code:
+Conditions for svg code:
 
-* Use `currentColor` on fills or strokes in monocolor icons
-* Use square icons via `viewBox` with same size and stroke width for appearance consistency
+* Use `currentColor` on fills or strokes in monocolor icons.
+* Use `viewBox` on `svg` tag.
+* Square icons are prefered but not necessary. Same size in `viewBox` for all the icons improves appearance consistency.
 
 ### Folder structure
 

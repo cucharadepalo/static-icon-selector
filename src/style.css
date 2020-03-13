@@ -208,7 +208,7 @@ button[class*="-foreground"] {
   margin-left: 5%;
 }
 #iconGrid {
-  min-height: 100vh;
+  min-height: calc(100vh - 80px);
   margin-bottom: 3em;
 }
 #toolbar {
