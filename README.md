@@ -9,7 +9,7 @@ Generates a quick reference app for designers and developers from a given folder
 2. Run `npm install` to install dev dependencies.
 3. Copy your folder containing `.svg` files in the root directory. If you want to categorize the icons, place them in folders inside the original one. See example below. 
 4. Each folder with icons inside the folder will be the n
-5. Edit `gulp.config.js` with the path of the icon folder you just copied and all the other options available if you like (not many).
+5. Edit `gulp.config.js` with the path of the icon folder you just copied and all the other options available if you like (not many). Don't forget the slash `'/'` at the end!!
 6. Run `npm run build` to generate and serve the created app.
 
 
@@ -45,6 +45,28 @@ Optimal conditions for svg code:
 
 * Use `currentColor` on fills or strokes in monocolor icons
 * Use square icons via `viewBox` with same size and stroke width for appearance consistency
+
+### Folder structure
+
+```
+├── ICON FOLDER
+│   ├── uncategorized icon.svg
+│   ├── uncategorized icon.svg
+│   ├── CATEGORY NAME
+│   │   ├── icon.svg
+│   │   ├── icon.svg
+│   │   ├── icon.svg
+│   │   ├── icon.svg
+│   │   ├── icon.svg
+│   ├── CATEGORY NAME
+│   │   ├── icon.svg
+│   │   ├── icon.svg
+│   │   ├── icon.svg
+│   │   ├── icon.svg
+└── └── └── icon.svg
+```
+
+
 
 ----
 
