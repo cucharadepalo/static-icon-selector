@@ -1,6 +1,6 @@
 module.exports = {
   icons: {
-    directory: "iconos/"
+    directory: "feather/"
   },
   colors: {
     accent_color: "#3491CC",

@@ -21,9 +21,27 @@ const walkSync = (dir, list, category) => {
     }
   });
   return iconList;
-};
+}
+
+const findAndReplace = (dir, string1, string2) => {
+  let files = fs.readdirSync(dir);
+  files = files.filter(junk.not);
+  files.forEach( file => {
+    if (fs.statSync(dir + file).isDirectory()) {
+      findAndReplace(dir + file + '/', string1, string2);
+    }
+    else {
+      let fileContent = fs.readFileSync(dir + file, "utf8");
+      let newContent = fileContent.replace(string1, string2);
+      fs.writeFileSync(dir + file, newContent);
+    }
+  })
+  return 'Done';
+}
 
 exports.run = (dir) => {
   const output = JSON.stringify(walkSync(dir), null, 2);
   return Promise.resolve(fs.writeFileSync('dist/' + jsonFile, output));
 }
+
+exports.findAndReplace = findAndReplace;
