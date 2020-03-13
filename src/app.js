@@ -8,16 +8,16 @@ window.addEventListener("load", () => {
         buttons = document.querySelectorAll(".action-btn"),
         buttonsTxt = {
             iconCopy: {
-                text: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> Copiar código`,
-                success: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg> Copiado!`
+                text: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> -copy_button_txt-`,
+                success: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg> -copy_button_success-`
             },
             iconDownload: {
-                text: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 9l-5 5-5-5M12 12.8V2.5"/></svg> Descargar`,
-                success: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;"> <path fill="currentColor" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z"> <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"/></path></svg> Descargando…`
+                text: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 9l-5 5-5-5M12 12.8V2.5"/></svg> -download_button_txt-`,
+                success: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;"> <path fill="currentColor" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z"> <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"/></path></svg> -download_button_success-`
             }
         },
         colorButtons = document.querySelectorAll(".preview-controls button"),
-        data = "iconos/icons.json";
+        data = "icons.json";
 
     let request = new XMLHttpRequest();
     request.open("GET", data);
@@ -41,7 +41,7 @@ window.addEventListener("load", () => {
             container.id = category;
             let heading = document.createElement("h2");
             heading.className = "category-heading";
-            heading.innerHTML = category == 'none' ? 'uncategorized' : category;
+            heading.innerHTML = category == 'none' ? '-no_category_heading-' : category;
             let category_icons = iconsByCat[category];
 
             category_icons.forEach(element => {
@@ -98,6 +98,7 @@ window.addEventListener("load", () => {
         svgCode.setAttribute("data-filename", iconFilename);
     }
 
+    // Show different text on clicked buttons
     function showButtonMessage(e) {
         const element = e.currentTarget;
         const buttonId = element.id;
@@ -106,12 +107,12 @@ window.addEventListener("load", () => {
         element.innerHTML = msg;
         setTimeout( () => {
             element.innerHTML = originalTxt;
-        }, 3000 );
+        }, 2000 );
     }
 
     function copyToClipboard() {
         svgCode.select();
-        document.execCommand("copy");
+        return document.execCommand("copy");
     }
 
     function downloadIcon(e) {
@@ -131,7 +132,7 @@ window.addEventListener("load", () => {
         if (e.currentTarget.classList.contains("preview-foreground")) {
             colorAttibute = "data-foreground";
         }
-        preview.setAttribute(colorAttibute, color);
+        return preview.setAttribute(colorAttibute, color);
     }
 
 });
