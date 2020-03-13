@@ -1,5 +1,4 @@
 .DS_Store
-icons/
-iconos/
-node_modules/
-dist/
+/*/
+!/src/
+!/src/*
