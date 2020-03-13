@@ -1,13 +1,17 @@
 {
   "name": "static-icon-selector",
   "version": "1.0.0",
-  "description": "",
+  "description": "Generates a quick reference site for designers and developers from a folder with svg icons.",
   "main": "index.js",
   "scripts": {
     "build": "gulp build && gulp serve"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cucharadepalo/static-icon-selector.git"
+  },
+  "keywords": ["icons", "svg"],
+  "author": "Abraham Castro <cucharapalo@gmail.com> (https://abrahamcastro.info)",
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
