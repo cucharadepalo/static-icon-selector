@@ -11,11 +11,7 @@ const walkSync = (dir, list, category) => {
   let iconCategory = category || "none";
   files.forEach(file => {
     if (fs.statSync(dir + file).isDirectory()) {
-      // let directory = { category: file, data: []};
-      // iconList.push(directory);
-      
       iconList = walkSync(dir + file + '/', iconList, file);
-      // counter++;
     }
     else if (file != jsonFile) {
       let iconName = file.slice(0, -4);
@@ -29,6 +25,5 @@ const walkSync = (dir, list, category) => {
 
 exports.run = (dir) => {
   const output = JSON.stringify(walkSync(dir), null, 2);
-  fs.writeFileSync(dir + jsonFile, output);
-  return 'Hecho!';
+  return Promise.resolve(fs.writeFileSync('dist/' + jsonFile, output));
 }
