@@ -1,5 +1,6 @@
 window.addEventListener("load", () => {
-    const iconGrid = document.getElementById("iconGrid"),
+    const data = "icons.json",
+        iconGrid = document.getElementById("iconGrid"),
         toolbar = document.getElementById("toolbar"),
         parser = new DOMParser(),
         iconCopyBtn = document.getElementById("iconCopy"),
@@ -17,7 +18,8 @@ window.addEventListener("load", () => {
             }
         },
         colorButtons = document.querySelectorAll(".preview-controls button"),
-        data = "icons.json";
+        sizeSlider = document.getElementById("iconSize"),
+        sizeValue = document.querySelector(".preview-size > span");
 
     let request = new XMLHttpRequest();
     request.open("GET", data);
@@ -63,11 +65,11 @@ window.addEventListener("load", () => {
         // Attach buttons actions & text
         iconCopyBtn.addEventListener("click", copyToClipboard);
         iconDownloadBtn.addEventListener("click", downloadIcon);
-        for(let i = 0; i < buttons.length; i++){
+        for (let i = 0; i < buttons.length; i++) {
             buttons[i].innerHTML = buttonsTxt[buttons[i].id]['text'];
             buttons[i].addEventListener("click", showButtonMessage, true);
         }
-        for(let j = 0; j < colorButtons.length; j++){
+        for (let j = 0; j < colorButtons.length; j++) {
             colorButtons[j].addEventListener("click", previewColor, true);
         }
     }
@@ -105,9 +107,9 @@ window.addEventListener("load", () => {
         const originalTxt = buttonsTxt[buttonId]['text'];
         const msg = buttonsTxt[buttonId]['success'];
         element.innerHTML = msg;
-        setTimeout( () => {
+        setTimeout(() => {
             element.innerHTML = originalTxt;
-        }, 2000 );
+        }, 2000);
     }
 
     function copyToClipboard() {
@@ -134,5 +136,13 @@ window.addEventListener("load", () => {
         }
         return preview.setAttribute(colorAttibute, color);
     }
-
+    
+     // Size of the icon preview
+     sizeValue.innerHTML = sizeSlider.value;
+     sizeSlider.oninput = function() {
+         sizeValue.innerHTML = this.value;
+         const icon = toolbar.querySelector(".icon-preview svg");
+         icon.style.width = this.value + "px";
+     }
+ 
 });

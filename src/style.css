@@ -8,6 +8,7 @@
     --accent-color: -custom-color-1-;
     --secondary-color: -custom-color-2-;
     --toolbar-width: 360px;
+    --middle-color: rgb(128,128,128);
 }
 @media (prefers-color-scheme: dark) {
     :root {
@@ -33,9 +34,8 @@ body {
 }
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 86px);
+  grid-template-columns: repeat(auto-fill, 70px);
   grid-auto-rows: 1fr;
-  /* grid-template-rows: repeat(6, 1fr);  */
   grid-column-gap: 20px;
   grid-row-gap: 20px;
 }
@@ -84,7 +84,7 @@ body {
   border-radius: 4px;
   padding: 10px;
   overflow-y: scroll;
-  max-height: calc(100vh - (360px + 120px + 60px));
+  max-height: calc(100vh - (300px + 120px + 60px));
   margin: 0;
 }
 .icon-code > pre::selection,
@@ -102,19 +102,22 @@ body {
   opacity: 0;
 }
 .icon-preview {
-  width: var(--toolbar-width); height: calc(var(--toolbar-width) - 40px);
-  margin: 10px 0; padding: 40px 60px;
+  width: var(--toolbar-width); height: calc(var(--toolbar-width) - 80px);
+  margin: 10px 0; padding: 0;
   box-sizing: border-box;
   border-radius: 4px;
   transition: all .3s linear;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .icon-preview > svg {
-  width: 100%;
-  height: auto;
+  width: 192px; height: auto;
+  display: block;
 }
 .icon-details {
-  height: 40px;
-  line-height: 40px;
+  height: 60px;
+  line-height: 60px;
   white-space: nowrap;
 }
 .icon-actions {
@@ -167,6 +170,57 @@ body {
 }
 .preview-controls > div {
   padding: 0 10px;
+}
+.preview-size {
+  position: absolute;
+  right: 30px; top: calc(var(--toolbar-width) - 100px);
+  width: calc(100% - 180px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.size-slider {
+  -webkit-appearance: none; appearance: none;
+  height: 4px;
+  border-radius: 4px;
+  background: var(--middle-color);
+  outline: none;
+  opacity: 0.65;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  display: inline-block;
+  flex: 1 0 0%;
+}
+.size-slider:hover {
+  opacity: 1;
+}
+.size-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none;
+  width: 16px; height: 16px;
+  background: var(--accent-color);
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0,0,0,.2), 0 1px 3px rgba(0,0,0,.2);
+  cursor: pointer;
+}
+.preview-size span {
+  font-size: 13px;
+  color: var(--middle-color);
+  vertical-align: bottom;
+  display: inline-block;
+  text-align: right;
+  flex: 0 0 45px;
+  font-weight: 500;
+}
+.preview-size span:after {
+  content: 'px';
+}
+
+.slider::-moz-range-thumb {
+  width: 18px; height: 18px;
+  background: var(--accent-color);
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0,0,0,.2), 0 1px 3px rgba(0,0,0,.2);
+  cursor: pointer;
 }
 button[class*="preview-"] {
   width: 16px; height: 16px;
