@@ -119,6 +119,7 @@ body {
   height: 60px;
   line-height: 60px;
   white-space: nowrap;
+  font-size: 14px;
 }
 .icon-actions {
   display: flex;
