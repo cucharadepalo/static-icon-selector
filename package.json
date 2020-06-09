@@ -10,7 +10,10 @@
     "type": "git",
     "url": "git+https://github.com/cucharadepalo/static-icon-selector.git"
   },
-  "keywords": ["icons", "svg"],
+  "keywords": [
+    "icons",
+    "svg"
+  ],
   "author": "Abraham Castro <cucharapalo@gmail.com> (https://abrahamcastro.info)",
   "license": "ISC",
   "dependencies": {
