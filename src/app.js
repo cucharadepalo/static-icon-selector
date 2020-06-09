@@ -95,6 +95,7 @@ window.addEventListener("load", () => {
         details.innerHTML = "";
         details.appendChild(iconDetails);
         codeBlock.textContent = iconCode;
+        // eslint-disable-next-line no-undef
         hljs.highlightBlock(codeBlock);
         svgCode.textContent = iconCode;
         svgCode.setAttribute("data-filename", iconFilename);
@@ -109,7 +110,8 @@ window.addEventListener("load", () => {
         element.innerHTML = msg;
         setTimeout(() => {
             element.innerHTML = originalTxt;
-        }, 2000);
+            element.blur();
+        }, 1500);
     }
 
     function copyToClipboard() {
@@ -117,7 +119,7 @@ window.addEventListener("load", () => {
         return document.execCommand("copy");
     }
 
-    function downloadIcon(e) {
+    function downloadIcon() {
         let element = document.createElement("a");
         let filename = svgCode.getAttribute("data-filename");
         element.setAttribute("href", "data:image/svg+xml;charset=utf-8, " + encodeURIComponent(svgCode.textContent));
