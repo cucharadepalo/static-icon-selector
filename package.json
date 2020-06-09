@@ -13,12 +13,14 @@
   "keywords": ["icons", "svg"],
   "author": "Abraham Castro <cucharapalo@gmail.com> (https://abrahamcastro.info)",
   "license": "ISC",
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "gulp": "^4.0.2",
     "gulp-clean-dir": "^1.0.2",
     "gulp-replace": "^1.0.0",
-    "junk": "^3.1.0",
-    "live-server": "^1.2.1"
+    "junk": "^3.1.0"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.1",
+    "websocket-extensions": ">=0.1.4"
   }
 }
