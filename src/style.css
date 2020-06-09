@@ -38,6 +38,7 @@ body {
   grid-auto-rows: 1fr;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
+  max-width: 1060px;
 }
 .category-heading {
   font-size: 18px;
